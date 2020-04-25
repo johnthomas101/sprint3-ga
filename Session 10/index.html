@@ -10,6 +10,34 @@
             font-size: 25px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td,
+        #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
     </style>
 </head>
 
@@ -19,49 +47,6 @@
 
 
     <script>
-        // let obj1 = {
-        //     value: 10,
-        //     funcInner: () => {
-        //         console.log("Hii");
-        //     }
-        // };
-        // let func1 = () => {
-        //     return obj1;
-        // }
-        // let myObj = {
-        //     funcMain: func1
-        // }
-
-        // let name = 1
-        // let surname = 2
-        // let myString = `My name is ${name}. My surname is ${surname}`;
-        // console.log(myString);
-
-        // let myArray = [1, "2", {
-        //     "key1": "value1",
-        //     "key2": [1, 2, 3],
-        //     "key": () => {
-
-        //     }
-        // }, () => {
-        //     console.log("Hii");
-        // }];
-
-        // let myArrayNew = [];
-
-        // for (let i = 0; i < myArray.length; i++) {
-        //     console.log(myArray[i]);
-        // }
-
-        // myArray.forEach((el)=>{
-        //     console.log(el)
-        // })
-
-
-
-
-
-
 
         let httpGetAsync = (theUrl, callback) => {
             // AJAX
@@ -94,13 +79,49 @@
         </div>
         `;
 
-        document.querySelector('.main-container').innerHTML = nodeCreated;
+        let trRows = "";
+
 
         let makeSomeHTML = (response) => {
-            debugger;
             let obj = JSON.parse(response);
-            console.log(obj["data"]);
+            let dataArr = obj["data"];
+            for (let i = 0; i < dataArr.length; i++) {
+                let currObj = dataArr[i];
+                let email = currObj["email"];
+                let fName = currObj["first_name"];
+                let lName = currObj["last_name"];
+                let image = currObj["avatar"];
+                let trTemplate = `
+                        <tr>
+                            <td>${email}</td>
+                            <td>${fName}</td>
+                            <td>${lName}</td>
+                            <td><img src="${image}"></td>
+                        </tr>
+                    `;
+
+                trRows = trRows + trTemplate;
+
+                console.log(currObj);
+                console.log(trRows);
+            }
+
+            let tableHtml = `
+            <table id="customers"> 
+                <tr>
+                    <th>Email</th>
+                    <th>FName</th>
+                    <th>LName</th>
+                    <th>Image</th>
+                </tr>
+                ${trRows}
+            </table>
+            `
+
+            document.querySelector('.main-container').innerHTML = tableHtml;
+
         }
+
         httpGetAsync("https://reqres.in/api/users/", makeSomeHTML);
 
     </script>
