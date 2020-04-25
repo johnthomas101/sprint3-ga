@@ -5,20 +5,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Session 10</title>
+    <style>
+        body {
+            font-size: 25px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
 </head>
 
 <body>
     <div class="main-container">
     </div>
+
+
     <script>
+        // let obj1 = {
+        //     value: 10,
+        //     funcInner: () => {
+        //         console.log("Hii");
+        //     }
+        // };
+        // let func1 = () => {
+        //     return obj1;
+        // }
+        // let myObj = {
+        //     funcMain: func1
+        // }
+
+        // let name = 1
+        // let surname = 2
+        // let myString = `My name is ${name}. My surname is ${surname}`;
+        // console.log(myString);
+
+        // let myArray = [1, "2", {
+        //     "key1": "value1",
+        //     "key2": [1, 2, 3],
+        //     "key": () => {
+
+        //     }
+        // }, () => {
+        //     console.log("Hii");
+        // }];
+
+        // let myArrayNew = [];
+
+        // for (let i = 0; i < myArray.length; i++) {
+        //     console.log(myArray[i]);
+        // }
+
+        // myArray.forEach((el)=>{
+        //     console.log(el)
+        // })
+
+
+
+
+
+
 
         let httpGetAsync = (theUrl, callback) => {
             // AJAX
             var xmlHttp = new XMLHttpRequest();
-            
+
             // function which executes when state of your request changes
             xmlHttp.onreadystatechange = () => {
-                if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
                     // this is the important line
                     callback(xmlHttp.responseText);
                 }
@@ -43,16 +94,14 @@
         </div>
         `;
 
-        document.querySelector('.main-container').innerHTML = nodeCreated;   
+        document.querySelector('.main-container').innerHTML = nodeCreated;
 
         let makeSomeHTML = (response) => {
+            debugger;
             let obj = JSON.parse(response);
             console.log(obj["data"]);
         }
-        httpGetAsync("https://reqres.in/api/users/", (response) => {
-            let obj = JSON.parse(response);
-            console.log(obj["data"]);
-        });
+        httpGetAsync("https://reqres.in/api/users/", makeSomeHTML);
 
     </script>
 </body>
