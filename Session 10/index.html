@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,12 +37,23 @@
             background-color: #4CAF50;
             color: white;
         }
+        .button-style{
+            color: white;
+            background-color: grey;
+            padding: 10px;
+            display: inline-block;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
+    <div class="button-style" onclick="handleButtonClick()">
+        Fetch Data
+    </div>
     <div class="main-container">
     </div>
+
 
 
     <script>
@@ -122,7 +132,11 @@
 
         }
 
-        httpGetAsync("https://reqres.in/api/users/", makeSomeHTML);
+        let handleButtonClick = () => {
+            httpGetAsync("https://reqres.in/api/users/", makeSomeHTML);
+        }
+
+        // httpGetAsync("https://reqres.in/api/users/", makeSomeHTML);
 
     </script>
 </body>
