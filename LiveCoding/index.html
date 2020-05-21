@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Aggregator</title>
+    <link rel="stylesheet" href="index.css">
+    
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- We wont code -->
+            News Aggregator
+        </div>
+        <div class="search-box">
+            <input class="input-box" onkeyup="handleSearch()" id="SearchBox" type="text" placeholder="Type and...">
+            <!-- <div class="button">
+                Search
+            </div> -->
+        </div>
+        <div id="ResultCount">
+        </div>
+        <div class="results" id="Results">
+
+            
+        </div>
+        <div class="results">
+            <span onclick="showAll()">BACK </span> &nbsp; <span id="SingleResult"></span>
+        </div>
+        <!-- <ul id="news-articles">
+            <li class="article">
+                <img class="article-img">
+                <h2 class="article-title"></h2>
+                <p class="article-description"></p>
+                <span class="article-author"></span>
+                <a href="" class="article-link"></a>
+            </li>
+        </ul> -->
+
+
+    </div>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
